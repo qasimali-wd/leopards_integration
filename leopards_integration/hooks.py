@@ -5,6 +5,36 @@ app_description = "App designed to integrate with Leopards Courier"
 app_email = "xyz@gmail.com"
 app_license = "mit"
 
+doctype_js = {
+    "Delivery Note": "public/js/delivery_note.js"
+}
+
+scheduler_events = {
+    "hourly": [
+        "leopards_integration.services.tracking_sync.sync_all_active_shipments"
+    ]
+}
+
+app_include_js = [
+    "/assets/leopards_integration/js/delivery_note_list.js",
+]
+
+scheduler_events = {
+    "cron": {
+        # Every 30 minutes – tracking sync
+        "*/30 * * * *": [
+            "leopards_integration.scheduler.tracking_sync.sync_leopards_tracking"
+        ],
+
+        # Monthly cleanup (safe)
+        "0 2 1 * *": [
+            "leopards_integration.scheduler.cleanup.cleanup_old_leopards_snapshots",
+            "leopards_integration.scheduler.cleanup.cleanup_old_leopards_tracking_history",
+        ],
+    }
+}
+
+
 # Apps
 # ------------------
 

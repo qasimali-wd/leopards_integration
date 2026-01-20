@@ -1,0 +1,23 @@
+*.pyc
+__pycache__/
+.env
+.env.*
+*.log
+
+# Node
+node_modules/
+yarn.lock
+package-lock.json
+
+# Bench / Site
+sites/
+logs/
+pids/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
